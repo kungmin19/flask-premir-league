@@ -12,7 +12,7 @@
 # from epl import routes, models
 
 
-
+import os
 from flask import Flask
 from epl.extensions import db, migrate
 from epl.core.routes import core_bp
@@ -22,7 +22,11 @@ from epl.players.routes import players_bp
 def create_app():
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../instance/epl.sqlite'
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    db_path = os.path.join(basedir, '..', 'instance', 'epl.sqlite')
+    
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
+
     app.secret_key = b'rigiregeoeogoe123123!@#'
 
     db.init_app(app)
