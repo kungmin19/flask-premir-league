@@ -23,10 +23,9 @@ def create_app():
     app = Flask(__name__)
 
     basedir = os.path.abspath(os.path.dirname(__file__))
-    db_path = os.path.join(basedir, '..', 'instance', 'epl.sqlite')
+    db_path = os.path.join(basedir, '..', 'epl.sqlite')
     
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
-
     app.secret_key = b'rigiregeoeogoe123123!@#'
 
     db.init_app(app)
